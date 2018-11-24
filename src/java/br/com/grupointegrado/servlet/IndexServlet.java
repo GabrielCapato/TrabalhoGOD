@@ -33,28 +33,29 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+
         Connection conn = (Connection) req.getAttribute("conexao");
         AnuncioDao ADao = new AnuncioDao(conn);
         CategoriaDao CatDao = new CategoriaDao(conn);
-        
+
         try {
-            Anuncio obj = ADao.getAnuncio();
             List<Categoria> categorias = CatDao.buscaTodos();
             req.setAttribute("categorias", categorias);
-            req.setAttribute("anuncios", obj);
-            
         } catch (SQLException ex) {
             ex.printStackTrace();
             req.setAttribute("mensagem-erro", "Categorias não encontradas");
         }
-        
+
+        try {
+            Anuncio obj = ADao.getAnuncio();
+            req.setAttribute("anuncios", obj);
+        } catch (SQLException ex) {
+            req.setAttribute("mensagem-erro", "Nenhum Anuncio Encontrado");
+        }
         
         RequestDispatcher JotaQuest = req.getRequestDispatcher("/WEB-INF/paginas/Home.jsp");
         JotaQuest.forward(req, resp);
+        
     }
-    
-    
-  
 
 }

@@ -26,7 +26,7 @@ public class AnuncioDao {
     
     public Anuncio getAnuncio() throws SQLException{
         
-        String sql = "SELECT nomeAnuncio,caminhoIMG,valor FROM anuncioaps";
+        String sql = "SELECT * FROM anuncio";
         PreparedStatement ps = conexao.prepareStatement(sql);
         
         ResultSet rs = ps.executeQuery();
@@ -39,11 +39,29 @@ public class AnuncioDao {
     
         public static Anuncio getAnuncioByResultSet(ResultSet rs) throws SQLException {
         Anuncio obj = new Anuncio();
-        obj.setNome(rs.getString("nomeAnuncio"));
-        obj.setCaminhoImagem(rs.getString("caminhoIMG"));
+        obj.setID(rs.getInt("ID"));
+        obj.setNome(rs.getString("nome"));
+        obj.setCaminhoImagem(rs.getString("PATH"));
         obj.setValor(rs.getInt("valor"));
+        obj.setDescr(rs.getString("descr"));
+        obj.setAnoModelo(rs.getInt("anoModelo"));
+        obj.setAnoFabr(rs.getInt("anoFab"));
+        obj.setCombustivel(rs.getInt("combustivel"));
+        obj.setCategoria(rs.getInt("categoria"));
         
         return obj;
     }
+    public Anuncio getAnuncioByID(int id) throws SQLException{
+        String sql = "SELECT * FROM anuncio WHERE ID = ?";
+        PreparedStatement ps = conexao.prepareStatement(sql);
+        ps.setInt(1,id);
+        ResultSet rs = ps.executeQuery();
+        rs.first();
+        
+        Anuncio obj = getAnuncioByResultSet(rs);
+        
+        return obj;
+        
+    }   
     
 }

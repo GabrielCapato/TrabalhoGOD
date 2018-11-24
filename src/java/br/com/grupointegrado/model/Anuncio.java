@@ -10,7 +10,7 @@ package br.com.grupointegrado.model;
  * @author alunocentro
  */
 public class Anuncio {
-    private String titulo_anuncio;
+    private int ID;
     private String nome;
     private String descr;
     private String caminhoImagem;
@@ -23,8 +23,8 @@ public class Anuncio {
     public Anuncio() {
     }
 
-    public Anuncio(String titulo_anuncio, String nome, String descr, String caminhoImagem, int anoModelo, int anoFabr, int combustivel, int categoria, double valor) {
-        this.titulo_anuncio = titulo_anuncio;
+    public Anuncio(int ID, String nome, String descr, String caminhoImagem, int anoModelo, int anoFabr, int combustivel, int categoria, double valor) {
+        this.ID = ID;
         this.nome = nome;
         this.descr = descr;
         this.caminhoImagem = caminhoImagem;
@@ -35,12 +35,13 @@ public class Anuncio {
         this.valor = valor;
     }
 
-    public String getTitulo_anuncio() {
-        return titulo_anuncio;
+
+    public int getID() {
+        return ID;
     }
 
-    public void setTitulo_anuncio(String titulo_anuncio) {
-        this.titulo_anuncio = titulo_anuncio;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getNome() {

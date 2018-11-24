@@ -1,6 +1,8 @@
+<%@page import="br.com.grupointegrado.model.Anuncio"%>
+<%@page import="br.com.grupointegrado.servlet.AnunciarServlet"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
+    <% Anuncio obj = (Anuncio) request.getAttribute("classificado");%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,20 +49,20 @@
                 </ol>
             </nav>
 
-            <h3>Passat tsi 211 cv revisado 3º dono</h3>
+            <h3><%= obj.getNome()%></h3>
             <div class="dropdown-divider"></div>
 
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <img src="IMG/488817006229252-full.jpg" class="rounded float-left veiculo-imagem">
+                    <img src="IMG/<%=obj.getCaminhoImagem()%>" class="rounded float-left veiculo-imagem">
                 </div>
                 <div class="col-md-6 mb-3">
                     <div class="veiculo-valor rounded mb-2">
-                        <span>R$ 119.000</span>
+                        <span>R$ <%= obj.getValor()%></span>
                     </div>
                     <div>
                         <strong>Ano:</strong>
-                        <span>2016/2017</span>
+                        <span><%= obj.getAnoFabr()%>/<%= obj.getAnoModelo()%> </span>
                     </div>
                     <div>
                         <strong>Quilometragem:</strong>
@@ -77,7 +79,7 @@
 
             <div class="row">
                 <div class="col">
-                    Veículo em ótimas condições...
+                    <%= obj.getDescr()%>
                 </div>
             </div>
     </main>

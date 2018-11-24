@@ -46,7 +46,7 @@ public class CategoriaDao {
     public static Categoria getCategoriaByResultSet(ResultSet result) throws SQLException {
         Categoria obj = new Categoria();
         obj.setID(result.getInt("ID"));
-        obj.setCat(result.getString("descr"));
+        obj.setCat(result.getString("nome"));
         return obj;
     }
     

@@ -33,7 +33,7 @@ public class ConexaoFilter implements Filter {
         config.setProperty("password", "root");
         config.setProperty("serverTimezone", "America/Sao_Paulo");
 
-        String url = "jdbc:mysql://localhost:3316/trabalhoprojeto";
+        String url = "jdbc:mysql://localhost:3306/veiculo";
 
         return DriverManager.getConnection(url, config);
     }
