@@ -72,12 +72,12 @@
                 <h3>Preencha os dados do anúncio</h3>
                 <div class="dropdown-divider"></div>
 
-                <form name="form-anunciar" method="POST">
+                <form name="form-anunciar" method="POST" >
                     <div class="form-row">
                         <div class="col-md-8 col-lg-7 col-xl-6">
                             <div class="form-group">
                                 <label for="anuncio-titulo">Título</label>
-                                <input type="text" class="form-control" id="titulo" placeholder="Passat TSI 211CV Revisado 3º Dono">
+                                <input type="text" class="form-control" name="nome" id="titulo" placeholder="Passat TSI 211CV Revisado 3º Dono">
                                 <div class="invalid-feedback">
                                     Informe o título do anúncio.
                                 </div>
@@ -111,7 +111,7 @@
                             <div class="form-group">
                                 <label for="anuncio-quilometragem">Quilometragem</label>
                                 <div class="input-group">
-                                    <input type="number" step="1" class="form-control" id="quilometragem"
+                                    <input type="number" step="1" name="km"class="form-control" id="quilometragem"
                                            placeholder="34000">
                                     <div class="input-group-append">
                                         <span class="input-group-text">Km</span>
@@ -129,7 +129,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">R$</span>
                                     </div>
-                                    <input type="number" step="1" class="form-control" name="titulo "id="valor" placeholder="119990">
+                                    <input type="number" step="1" class="form-control" name="valor" id="valor" placeholder="119990">
                                     <div class="input-group-append">
                                         <span class="input-group-text">,00</span>
                                     </div>
@@ -147,11 +147,11 @@
                                 <!-- Os tipos de combustíveis podem ser fixados no código -->
                                 <label for="anuncio-combustivel">Tipo de combustível</label>
                                 <select class="form-control" id="combustivel" name="combustivel">
-                                    <option value="GASOLINA">Gasolina</option>
-                                    <option value="ETANOL">Etanol</option>
-                                    <option value="FLEX">Flex</option>
-                                    <option value="GAS">Gás</option>
-                                    <option value="DIESEL">Díesel</option>
+                                    <option value="1">Gasolina</option>
+                                    <option value="2">Etanol</option>
+                                    <option value="3">Flex</option>
+                                    <option value="4">Gás</option>
+                                    <option value="5">Díesel</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Selecione o tipo de combustível do veículo.
@@ -207,7 +207,7 @@
                     </div>
 
                     <a href="index" class="btn">Cancelar</a>
-                    <button type="submit" onclick="getCampos()" class="btn btn-primary">Anunciar</button>
+                    <button type="submit" class="btn btn-primary">Anunciar</button>
 
                 </form>
 

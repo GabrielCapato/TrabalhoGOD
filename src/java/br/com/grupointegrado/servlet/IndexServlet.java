@@ -10,15 +10,10 @@ import br.com.grupointegrado.Dao.AnuncioDao;
 import br.com.grupointegrado.Dao.CategoriaDao;
 import br.com.grupointegrado.model.Anuncio;
 import br.com.grupointegrado.model.Categoria;
-import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.DispatcherType;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,8 +42,8 @@ public class IndexServlet extends HttpServlet {
         }
 
         try {
-            Anuncio obj = ADao.getAnuncio();
-            req.setAttribute("anuncios", obj);
+            List<Anuncio> obj = ADao.getAnuncio();
+            req.setAttribute("all-anuncios", obj);
         } catch (SQLException ex) {
             req.setAttribute("mensagem-erro", "Nenhum Anuncio Encontrado");
         }

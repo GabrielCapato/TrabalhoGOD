@@ -19,11 +19,12 @@ public class Anuncio {
     private int combustivel;
     private int categoria;
     private double valor;
+    private double KM;
 
     public Anuncio() {
     }
 
-    public Anuncio(int ID, String nome, String descr, String caminhoImagem, int anoModelo, int anoFabr, int combustivel, int categoria, double valor) {
+    public Anuncio(int ID, String nome, String descr, String caminhoImagem, int anoModelo, int anoFabr, int combustivel, int categoria, double valor, double KM) {
         this.ID = ID;
         this.nome = nome;
         this.descr = descr;
@@ -33,9 +34,17 @@ public class Anuncio {
         this.combustivel = combustivel;
         this.categoria = categoria;
         this.valor = valor;
+        this.KM = KM;
     }
 
+    public double getKM() {
+        return KM;
+    }
 
+    public void setKM(double KM) {
+        this.KM = KM;
+    }
+    
     public int getID() {
         return ID;
     }

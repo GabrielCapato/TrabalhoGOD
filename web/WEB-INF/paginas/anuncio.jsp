@@ -66,7 +66,7 @@
                     </div>
                     <div>
                         <strong>Quilometragem:</strong>
-                        <span>34.000 Km</span>
+                        <span><%=obj.getKM()%> Km</span>
                     </div>
                     <div>
                         <strong>Combustível:</strong>

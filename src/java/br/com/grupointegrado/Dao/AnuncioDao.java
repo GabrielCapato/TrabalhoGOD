@@ -7,10 +7,14 @@ package br.com.grupointegrado.Dao;
 
 import br.com.grupointegrado.model.Anuncio;
 import br.com.grupointegrado.model.Categoria;
+import com.sun.media.sound.SoftAbstractResampler;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,17 +28,38 @@ public class AnuncioDao {
         this.conexao = conexao;
     }  
     
-    public Anuncio getAnuncio() throws SQLException{
+    public void Insert(Anuncio obj)throws SQLException{
+        try {
+        String sql = "INSERT INTO anuncio (nome, descr, PATH, anoModelo, anoFab, combustivel, categoria, valor, km) VALUES ('?','?','?','?','?','?','?','?','?')";
+        PreparedStatement ps = conexao.prepareStatement(sql);
+        ps.setString(1,obj.getNome());
+        ps.setString(2,obj.getDescr());
+        ps.setString(3,"488817006229252-full.jpg");
+        ps.setInt(4,obj.getAnoModelo());
+        ps.setInt(5,obj.getAnoFabr());
+        ps.setInt(6,obj.getCombustivel());
+        ps.setInt(7,obj.getCategoria());
+        ps.setDouble(8,obj.getValor());
+        ps.setDouble(9,obj.getKM());
+        
+        ps.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Erro ao Gravar " + e);
+        }
+    }
+    public List<Anuncio> getAnuncio() throws SQLException{
         
         String sql = "SELECT * FROM anuncio";
         PreparedStatement ps = conexao.prepareStatement(sql);
-        
+        List<Anuncio> lista = new ArrayList<>();
         ResultSet rs = ps.executeQuery();
         rs.first();
-        
+        do{
         Anuncio obj = getAnuncioByResultSet(rs);
+        lista.add(obj);
+        }while(rs.next());
 
-        return obj;
+        return lista;
     }
     
         public static Anuncio getAnuncioByResultSet(ResultSet rs) throws SQLException {
@@ -48,6 +73,7 @@ public class AnuncioDao {
         obj.setAnoFabr(rs.getInt("anoFab"));
         obj.setCombustivel(rs.getInt("combustivel"));
         obj.setCategoria(rs.getInt("categoria"));
+        obj.setKM(rs.getDouble("km"));
         
         return obj;
     }
@@ -63,5 +89,5 @@ public class AnuncioDao {
         return obj;
         
     }   
-    
+
 }

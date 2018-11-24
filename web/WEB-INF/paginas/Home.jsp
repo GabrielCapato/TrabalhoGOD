@@ -5,7 +5,8 @@
 <html lang="pt-BR">
     <%
         List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
-        Anuncio obj = (Anuncio) request.getAttribute("anuncios");
+        List<Anuncio> Listaobj = (List<Anuncio>) request.getAttribute("all-anuncios");
+        String erro = (String)request.getAttribute("mensagem-erro");
     %>
     <head>
         <meta charset="UTF-8">
@@ -77,9 +78,11 @@
                         </nav>
                     </div>
                     <div class="col">
+                        <%if(erro == null){%>
                         <h3>Veículos anunciados</h3>         
+                           <%for (Anuncio obj : Listaobj) {%>
                         <table class="table table-hover">
-                            <tr class="tabela-veiculos-linha" onclick="abrirAnuncio(1)">
+                            <tr class="tabela-veiculos-linha" onclick="abrirAnuncio(<%= obj.getID()%>)">
                                 <td class="tv-col-imagem">
                                     <img src="IMG/<%=obj.getCaminhoImagem()%>">
                                 </td>
@@ -87,11 +90,11 @@
                                     <div class="row">
                                         <div class="col descricao-anuncio">
                                             <p>
-                                                <%= obj.getNome()%>
+                                                <%= obj.getNome()%> - <%=obj.getKM()%> KM
                                             </p>
                                         </div>
                                         <div class="col-sm-auto valor-anuncio">
-                                            <p><%=obj.getValor()%></p>
+                                            <p>R$ <%=obj.getValor()%></p>
                                         </div>
                                         <div class="col-sm-auto data-hora-anuncio">
                                             <p>
@@ -102,53 +105,13 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="tabela-veiculos-linha" onclick="abrirAnuncio(2)">
-                                <td class="tv-col-imagem">
-                                    <img src="IMG/488817006229252.jpg">
-                                </td>
-                                <td class="informacoes-anuncio">
-                                    <div class="row">
-                                        <div class="col descricao-anuncio">
-                                            <p>
-                                                Passat tsi 211 cv revisado 3º dono - 34.000 km | Câmbio: automático |
-                                                Gasolina
-                                            </p>
-                                        </div>
-                                        <div class="col-sm-auto valor-anuncio">
-                                            <div>R$ 119.990</div>
-                                        </div>
-                                        <div class="col-sm-auto data-hora-anuncio">
-                                            <p>
-                                                10/09/2018 <br />
-                                                17:55
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
+                            <%}
+                              }
+                            else{%>
+                            <h3>Nenhum anuncio encontrado !</h3>
+                                <%}%>
 <!--                            </tr>
-                            <tr class="tabela-veiculos-linha" onclick="abrirAnuncio(3)">
-                                <td class="tv-col-imagem">
-                                    <img src="IMG/585815038078078.jpg">
-                                </td>
-                                <td class="informacoes-anuncio">
-                                    <div class="row">
-                                        <div class="col descricao-anuncio">
-                                            <p>
-                                                Passat Branco - 34.000 km | Câmbio: automático | Gasolina
-                                            </p>
-                                        </div>
-                                        <div class="col-sm-auto valor-anuncio">
-                                            <div>R$ 119.990</div>
-                                        </div>
-                                        <div class="col-sm-auto data-hora-anuncio">
-                                            <p>
-                                                10/09/2018 <br />
-                                                17:55
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+-->                           <!--
                             <tr class="tabela-veiculos-linha" onclick="abrirAnuncio(4)">
                                 <td class="tv-col-imagem">
                                     <img src="IMG/782804083333935.jpg">
